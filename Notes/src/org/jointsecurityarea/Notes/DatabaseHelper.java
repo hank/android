@@ -14,7 +14,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	}
 	
 	public void onCreate(SQLiteDatabase db) {
-		String sql = "CREATE TABLE IF NOT EXISTS notes(" +
+		Log.d("DB", "Create begins");
+		String sql = "CREATE TABLE IF NOT EXISTS notes (" +
 				 "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
 				 "title TEXT, " +
 				 "content TEXT)";
