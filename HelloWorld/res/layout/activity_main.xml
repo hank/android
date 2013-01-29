@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/LinearLayout1"
+    style="@style/AppTheme"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#333"
@@ -9,44 +10,41 @@
 
     <TextView
         android:id="@+id/TextView1"
-        style="@android:style/TextAppearance.Large"
+        style="@style/Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/status_title"
-        android:textColor="#EEE" />
+        android:text="@string/status_title" />
 
     <TextView
         android:id="@+id/status_char_count"
+        style="@style/CharCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:layout_marginRight="5dp"
-        android:text="@string/starting_char_count"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="#EEE" />
+        android:text="@string/starting_char_count" />
 
     <EditText
         android:id="@+id/status_text_area"
+        style="@style/StatusTextArea"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_weight="0.27"
         android:ems="10"
         android:hint="@string/text_entry_hint"
-        android:inputType="textMultiLine"
-        android:maxLength="@string/starting_char_count"
-        android:textColor="#EEE" >
+        android:maxLength="@string/starting_char_count" >
 
         <requestFocus />
     </EditText>
 
     <Button
         android:id="@+id/status_button_submit"
+        style="@style/SubmitButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/submit_button"
-        android:textColor="#EEE" />
+        android:text="@string/submit_button" />
 
 </LinearLayout>

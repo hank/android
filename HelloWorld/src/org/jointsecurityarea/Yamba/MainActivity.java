@@ -1,4 +1,6 @@
-package org.jointsecurityarea.HelloWorld;
+package org.jointsecurityarea.Yamba;
+
+import org.jointsecurityarea.Yamba.R;
 
 import android.app.Activity;
 import android.content.Context;
