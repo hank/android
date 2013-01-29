@@ -23,20 +23,23 @@ public class MainActivity extends Activity implements TextWatcher {
 	protected static TextView char_count;
 	protected static EditText status_text_area;
 	protected static Button submit_button;
+	protected static YambaClient yc;
 
 	static class Poster extends AsyncTask<String, Void, Integer> {
 		private Context ctx;
+		private YambaClient yc;
 
-		Poster(Context ctx) { this.ctx = ctx; }
-		
+		Poster(Context ctx, YambaClient yc) {
+			this.ctx = ctx;
+			this.yc = yc;
+		}
+
 		/** Returns 0 on success, 1 on failure */
 		@Override
 		protected Integer doInBackground(String... args) {
 			int ret = 0;
 			// Send the message
 			try {
-				YambaClient yc = new YambaClient("hank", "manatees",
-						"http://yamba.marakana.com/api");
 				yc.postStatus(args[0]);
 			} catch (YambaClientException ye) {
 				Log.d("YAMBA", "Failed: " + ye.getLocalizedMessage());
@@ -49,11 +52,11 @@ public class MainActivity extends Activity implements TextWatcher {
 		protected void onPostExecute(Integer result) {
 			int duration = Toast.LENGTH_SHORT;
 			Toast toast;
-			if(result == 0) {
+			if (result == 0) {
 				// Success!
 				toast = Toast.makeText(ctx, "Success", duration);
-			}
-			else {
+				status_text_area.setText("");
+			} else {
 				toast = Toast.makeText(ctx, "Failure", duration);
 			}
 			toast.show();
@@ -91,11 +94,16 @@ public class MainActivity extends Activity implements TextWatcher {
 				submit();
 			}
 		});
+		
+		yc = new YambaClient("hank", "manatees",
+				"http://yamba.marakana.com/api");
 	}
 
 	protected void submit() {
 		// Send the message
-		new Poster(getApplicationContext()).execute(status_text_area.getText().toString());
+		new Poster(getApplicationContext(), yc).execute(
+				status_text_area.getText().toString()
+		);
 	}
 
 	@Override
@@ -119,10 +127,6 @@ public class MainActivity extends Activity implements TextWatcher {
 
 	@Override
 	public void onTextChanged(CharSequence s, int start, int before, int count) {
-		/*
-		 * Log.d("TEXT", "Text changed (start: " + start + ", before: " + before
-		 * + ", count: " + count + ")");
-		 */
 		// If we're in bounds, set the box correctly.
 		// Text box size should be enforced in XML
 		Integer scc = Integer.valueOf(starting_char_count);
