@@ -10,7 +10,7 @@
     <TextView
         android:id="@+id/TextView1"
         style="@android:style/TextAppearance.Large"
-        android:layout_width="match_parent"
+        android:layout_width="300dip"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
@@ -18,44 +18,38 @@
         android:text="@string/status_title"
         android:textColor="#EEE" />
 
-    <TextView
-        android:id="@+id/status_char_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/TextView1"
-        android:layout_gravity="right"
-        android:layout_marginRight="5dp"
-        android:text="@string/starting_char_count"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="#EEE" />
-
     <EditText
         android:id="@+id/status_text_area"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/status_button_submit"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/status_char_count"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_weight="0.27"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/TextView1"
         android:ems="10"
         android:hint="@string/text_entry_hint"
         android:inputType="textMultiLine"
         android:maxLength="@string/starting_char_count"
-        android:textColor="#EEE" >
-
-        <requestFocus />
-    </EditText>
+        android:textColor="#EEE" />
 
     <Button
         android:id="@+id/status_button_submit"
-        android:layout_width="match_parent"
+        android:layout_width="100dip"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/status_char_count"
+        android:layout_marginTop="40dp"
+        android:layout_toLeftOf="@+id/status_text_area"
+        android:layout_gravity=""
         android:text="@string/submit_button"
+        android:textColor="#EEE" />
+
+    <TextView
+        android:id="@+id/status_char_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/status_button_submit"
+        android:layout_below="@+id/TextView1"
+        android:text="@string/starting_char_count"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="#EEE" />
 
 </RelativeLayout>
