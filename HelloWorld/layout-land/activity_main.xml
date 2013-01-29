@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#333"
-    android:orientation="vertical"
     tools:context=".MainActivity" >
 
     <TextView
@@ -12,6 +11,7 @@
         style="@android:style/TextAppearance.Large"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/status_text_area"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:gravity="center"
@@ -22,24 +22,21 @@
         android:id="@+id/status_char_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/TextView1"
+        android:layout_alignBaseline="@+id/status_text_area"
+        android:layout_alignParentTop="true"
         android:layout_gravity="right"
         android:layout_marginRight="5dp"
+        android:layout_toRightOf="@+id/TextView1"
         android:text="@string/starting_char_count"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="#EEE" />
 
     <EditText
         android:id="@+id/status_text_area"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/status_button_submit"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/status_char_count"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_weight="0.27"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/status_char_count"
         android:ems="10"
         android:hint="@string/text_entry_hint"
         android:inputType="textMultiLine"
@@ -53,8 +50,9 @@
         android:id="@+id/status_button_submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
+        android:layout_alignBaseline="@+id/status_text_area"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/status_text_area"
         android:text="@string/submit_button"
         android:textColor="#EEE" />
 
