@@ -1,7 +1,5 @@
 package org.jointsecurityarea.Yamba;
 
-import org.jointsecurityarea.Yamba.R;
-
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -14,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.marakana.android.yamba.clientlib.YambaClient;
+import com.marakana.android.yamba.clientlib.YambaClientException;
 
 public class MainActivity extends Activity implements TextWatcher {
 
@@ -49,7 +49,9 @@ public class MainActivity extends Activity implements TextWatcher {
 		// Set up click action
 		submit_button.setOnClickListener(new View.OnClickListener() {
 			@Override
-			public void onClick(View v) { submit(); }
+			public void onClick(View v) {
+				submit();
+			}
 		});
 	}
 
@@ -62,8 +64,15 @@ public class MainActivity extends Activity implements TextWatcher {
 		
 		// Empty the status text area
 		status_text_area.setText("");
+		
+		// Send the message
+		try {
+			YambaClient yc = new YambaClient("hank", "manatees");
+			yc.postStatus(text.toString());
+		} catch(YambaClientException ye) {
+			Log.d("YAMBA", "Failed: " + ye.getLocalizedMessage());
+		}
 	}
-	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
