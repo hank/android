@@ -17,6 +17,10 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
+    <style name="AppTheme.Layout">
+        <item name="android:background">#333</item>
+    </style>
+
     <style name="AppTheme.Widgets">
         <item name="android:textColor">#EEE</item>
         <item name="android:background">#333</item>

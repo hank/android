@@ -41,22 +41,29 @@ public class MainActivity extends Activity implements TextWatcher {
 		status_text_area.addTextChangedListener(this);
 		// Find our character count field
 		char_count = (TextView) findViewById(R.id.status_char_count);
-		// Initialize the value in character count
+		// Initialize the value in character count and color green
 		char_count.setText(starting_char_count);
+		char_count.setTextColor(0xFF00FF00);
 		// Find our submit button
 		submit_button = (Button) findViewById(R.id.status_button_submit);
 		// Set up click action
 		submit_button.setOnClickListener(new View.OnClickListener() {
 			@Override
-			public void onClick(View v) {
-				Context context = getApplicationContext();
-				CharSequence text = status_text_area.getText();
-				int duration = Toast.LENGTH_SHORT;
-				Toast toast = Toast.makeText(context, text.toString(), duration);
-				toast.show();
-			}
+			public void onClick(View v) { submit(); }
 		});
 	}
+
+	protected void submit() {
+		Context context = getApplicationContext();
+		CharSequence text = status_text_area.getText();
+		int duration = Toast.LENGTH_SHORT;
+		Toast toast = Toast.makeText(context, text.toString(), duration);
+		toast.show();
+		
+		// Empty the status text area
+		status_text_area.setText("");
+	}
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -88,6 +95,11 @@ public class MainActivity extends Activity implements TextWatcher {
 		Integer scc = Integer.valueOf(starting_char_count);
 		if (s.length() >= 0 && s.length() <= scc) {
 			char_count.setText(Integer.toString(scc - s.length()));
+			// Set the color
+			if (scc - s.length() <= 10)
+				char_count.setTextColor(0xFFFF0000);
+			else
+				char_count.setTextColor(0xFF00FF00);
 		}
 	}
 

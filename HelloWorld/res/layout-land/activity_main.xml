@@ -1,9 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/RelativeLayout1"
+    style="@style/AppTheme.Layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#333"
     android:orientation="vertical"
     tools:context=".MainActivity" >
 
@@ -30,25 +30,23 @@
         android:inputType="textMultiLine"
         android:maxLength="@string/starting_char_count" />
 
-    <Button
-        android:id="@+id/status_button_submit"
-        style="@style/SubmitButton"
-        android:layout_width="100dip"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/status_char_count"
-        android:layout_gravity=""
-        android:layout_marginTop="40dp"
-        android:layout_marginRight="10dp"
-        android:layout_toLeftOf="@+id/status_text_area"
-        android:text="@string/submit_button" />
-
     <TextView
         android:id="@+id/status_char_count"
         style="@style/CharCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/status_button_submit"
-        android:layout_below="@+id/TextView1"
+        android:layout_below="@id/TextView1"
+        android:layout_toLeftOf="@+id/status_text_area"
         android:text="@string/starting_char_count" />
+
+    <Button
+        android:id="@+id/status_button_submit"
+        style="@style/SubmitButton"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="5dp"
+        android:layout_toLeftOf="@+id/status_text_area"
+        android:text="@string/submit_button" />
 
 </RelativeLayout>
