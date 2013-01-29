@@ -2,6 +2,7 @@ package org.jointsecurityarea.Yamba;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.marakana.android.yamba.clientlib.YambaClient;
 import com.marakana.android.yamba.clientlib.YambaClientException;
 
@@ -21,6 +23,42 @@ public class MainActivity extends Activity implements TextWatcher {
 	protected static TextView char_count;
 	protected static EditText status_text_area;
 	protected static Button submit_button;
+
+	static class Poster extends AsyncTask<String, Void, Integer> {
+		private Context ctx;
+
+		Poster(Context ctx) { this.ctx = ctx; }
+		
+		/** Returns 0 on success, 1 on failure */
+		@Override
+		protected Integer doInBackground(String... args) {
+			int ret = 0;
+			// Send the message
+			try {
+				YambaClient yc = new YambaClient("hank", "manatees",
+						"http://yamba.marakana.com/api");
+				yc.postStatus(args[0]);
+			} catch (YambaClientException ye) {
+				Log.d("YAMBA", "Failed: " + ye.getLocalizedMessage());
+				ret = 1;
+			}
+			return Integer.valueOf(ret);
+		}
+
+		@Override
+		protected void onPostExecute(Integer result) {
+			int duration = Toast.LENGTH_SHORT;
+			Toast toast;
+			if(result == 0) {
+				// Success!
+				toast = Toast.makeText(ctx, "Success", duration);
+			}
+			else {
+				toast = Toast.makeText(ctx, "Failure", duration);
+			}
+			toast.show();
+		}
+	}
 
 	/**
 	 * onCreate Creates the activity
@@ -56,22 +94,8 @@ public class MainActivity extends Activity implements TextWatcher {
 	}
 
 	protected void submit() {
-		Context context = getApplicationContext();
-		CharSequence text = status_text_area.getText();
-		int duration = Toast.LENGTH_SHORT;
-		Toast toast = Toast.makeText(context, text.toString(), duration);
-		toast.show();
-		
-		// Empty the status text area
-		status_text_area.setText("");
-		
 		// Send the message
-		try {
-			YambaClient yc = new YambaClient("hank", "manatees");
-			yc.postStatus(text.toString());
-		} catch(YambaClientException ye) {
-			Log.d("YAMBA", "Failed: " + ye.getLocalizedMessage());
-		}
+		new Poster(getApplicationContext()).execute(status_text_area.getText().toString());
 	}
 
 	@Override
