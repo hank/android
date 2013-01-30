@@ -41,6 +41,10 @@
         <item name="android:ems">10</item>
     </style>
 
+    <style name="TimelineRow" parent="AppTheme.Widgets">
+        <item name="android:textColor">#FFF</item>
+    </style>
+
     <style name="SubmitButton" parent="AppTheme.Widgets">
         <item name="android:background">#666</item>
     </style>
