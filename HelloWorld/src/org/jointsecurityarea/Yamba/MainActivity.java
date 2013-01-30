@@ -95,8 +95,7 @@ public class MainActivity extends Activity implements TextWatcher {
 			}
 		});
 		
-		yc = new YambaClient("hank", "manatees",
-				"http://yamba.marakana.com/api");
+		yc = new YambaClient("hank", "manatees");
 	}
 
 	protected void submit() {
